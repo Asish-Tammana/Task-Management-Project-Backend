@@ -5,7 +5,9 @@ const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
 const path = require("path");
 const app = express();
+const cors = require("cors");
 app.use(express.json());
+app.use(cors());
 
 let db = null;
 const dbPath = path.join(__dirname, "taskManagement.db");
