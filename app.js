@@ -88,7 +88,7 @@ app.post("/signup/", async (request, response) => {
 
     if (password.length < 6) {
       response.status(400);
-      response.send("Password is too short");
+      response.send({ returnResponse: "Password is too short" });
     } else {
       const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -106,11 +106,11 @@ app.post("/signup/", async (request, response) => {
 
       await db.run(registerUserQuery);
       response.status(200);
-      response.send("User created successfully");
+      response.send({ returnResponse: "User created successfully" });
     }
   } else {
     response.status(400);
-    response.send("User already exists");
+    response.send({ returnResponse: "User already exists" });
   }
 });
 
