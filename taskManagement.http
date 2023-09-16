@@ -1,0 +1,128 @@
+POST http://localhost:3000/signup/
+Content-Type: application/json
+
+{
+  "username": "adam_richard",
+  "password": "richard_567",
+  "name": "Adam Richard",
+  "is_admin": 0,
+  "description" : "Dedicated software engineer with a passion for problem-solving and creating efficient, scalable solutions. Experienced in full-stack development and always eager to learn and adapt to emerging technologies. Strong believer in teamwork and collaboration to achieve common goals and deliver exceptional software products",
+  "gender": "Male"
+}
+
+#API 1
+
+###
+
+POST http://localhost:3000/login/
+Content-Type: application/json
+
+{
+  "username":"john_admin",
+  "password":"hashed_password6"
+}
+
+#API 2
+
+###
+
+GET http://localhost:3000/tasks/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5fYWRtaW4iLCJpYXQiOjE2OTQ4MDM3ODR9.kZLmTwOlSJJeRHuI3gqS-y_H1gkVbWLAr1WE64J-tHI
+
+#API 3
+
+###
+
+POST http://localhost:3000/addTask/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5fYWRtaW4iLCJpYXQiOjE2OTQ4MDM3ODR9.kZLmTwOlSJJeRHuI3gqS-y_H1gkVbWLAr1WE64J-tHI
+Content-Type: application/json
+
+{
+  "title": "New Feature Development",
+  "description": "Implement a cutting-edge new feature to enhance user experience.",
+  "assigned_date": "2023-09-20",
+  "assigned_by": "David Smith",
+  "assigned_to": "Michael Rodriguez",
+  "task_status": "assigned"
+}
+
+#API 4
+
+###
+
+PUT http://localhost:3000/profiles/7/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5fYWRtaW4iLCJpYXQiOjE2OTQ4MDM3ODR9.kZLmTwOlSJJeRHuI3gqS-y_H1gkVbWLAr1WE64J-tHI
+Content-Type: application/json
+
+{
+  "updatedName": "Adam Richard",
+  "updatedDescription" : "Dedicated software engineer with a passion for problem-solving and creating efficient, scalable solutions.",
+  "updatedGender": "Male"
+}
+
+#API 5
+
+###
+
+PUT http://localhost:3000/updateTaskStatus/6/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5fYWRtaW4iLCJpYXQiOjE2OTQ4MDM3ODR9.kZLmTwOlSJJeRHuI3gqS-y_H1gkVbWLAr1WE64J-tHI
+Content-Type: application/json
+
+{"update_task_status": "in_progress"}
+
+#API 6
+
+###
+
+PUT http://localhost:3000/updateTaskDetails/6/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5fYWRtaW4iLCJpYXQiOjE2OTQ4MDM3ODR9.kZLmTwOlSJJeRHuI3gqS-y_H1gkVbWLAr1WE64J-tHI
+Content-Type: application/json
+
+{
+  "title": "New App Development",
+  "description": "Implement a cutting-edge new feature to enhance user experience.",
+  "assigned_date": "2023-09-20",
+  "assigned_by": "John Doe",
+  "assigned_to": "Michael Rodriguez",
+  "task_status": "assigned"
+}
+
+#API 7
+
+###
+
+GET http://localhost:3000/profiles/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5fYWRtaW4iLCJpYXQiOjE2OTQ4MDM3ODR9.kZLmTwOlSJJeRHuI3gqS-y_H1gkVbWLAr1WE64J-tHI
+
+#API 8
+
+###
+
+DELETE http://localhost:3000/tasks/6/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5fYWRtaW4iLCJpYXQiOjE2OTQ4MDM3ODR9.kZLmTwOlSJJeRHuI3gqS-y_H1gkVbWLAr1WE64J-tHI
+
+#API 9
+
+###
+
+DELETE http://localhost:3000/profiles/7/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5fYWRtaW4iLCJpYXQiOjE2OTQ4MDM3ODR9.kZLmTwOlSJJeRHuI3gqS-y_H1gkVbWLAr1WE64J-tHI
+
+#API 10
+
+###
+
+GET http://localhost:3000/tasks/5/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5fYWRtaW4iLCJpYXQiOjE2OTQ4MDM3ODR9.kZLmTwOlSJJeRHuI3gqS-y_H1gkVbWLAr1WE64J-tHI
+
+#API 11
+
+###
+
+POST http://localhost:3000/tasks/5/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5fYWRtaW4iLCJpYXQiOjE2OTQ4MDM3ODR9.kZLmTwOlSJJeRHuI3gqS-y_H1gkVbWLAr1WE64J-tHI
+Content-Type: application/json
+
+{
+    "comment": "Sample comment text goes here"
+}
