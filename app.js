@@ -40,12 +40,12 @@ const authenticationToken = (request, response, next) => {
 
   if (jwtToken === undefined) {
     response.status(401);
-    response.send("Invalid JWT Token");
+    response.send({ returnResponse: "Invalid JWT Token" });
   } else {
     jwt.verify(jwtToken, "taskManagement", async (error, payload) => {
       if (error) {
         response.status(401);
-        response.send("Invalid JWT Token");
+        response.send({ returnResponse: "Invalid JWT Token" });
       } else {
         request.username = payload.username;
         next();
