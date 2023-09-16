@@ -128,16 +128,20 @@ app.post("/login/", async (request, response) => {
 
     if (isPasswordMatch) {
       let jwtToken;
+
+      const selectUserQuery = `SELECT * FROM users WHERE username = '${username}';`;
+      const loggedInUserDetails = await db.get(selectUserQuery);
+
       const payload = { username: username };
       jwtToken = jwt.sign(payload, "taskManagement");
-      response.send({ jwtToken });
+      response.send({ jwtToken, loggedInUserDetails });
     } else {
       response.status(400);
-      response.send("Invalid password");
+      response.send({ returnResponse: "Invalid password" });
     }
   } else {
     response.status(400);
-    response.send("Invalid user");
+    response.send({ returnResponse: "Invalid user" });
   }
 });
 
@@ -153,7 +157,7 @@ app.get(
     const getTasksList = `SELECT * FROM tasks;`;
 
     const dbResponse = await db.all(getTasksList);
-    response.send(dbResponse);
+    response.send({ returnResponse: dbResponse });
   }
 );
 
@@ -192,7 +196,7 @@ app.post(
 
     await db.run(insertTaskQuery);
     response.status(200);
-    response.send("Task Added Successfully");
+    response.send({ returnResponse: "Task Added Successfully" });
   }
 );
 
@@ -225,7 +229,7 @@ app.put(
 
     await db.run(updateProfileQuery);
     response.status(200);
-    response.send("Profile Updated Successfully");
+    response.send({ returnResponse: "Profile Updated Successfully" });
   }
 );
 
@@ -245,7 +249,7 @@ app.put(
 
     await db.run(updateTaskStatusQuery);
     response.status(200);
-    response.send("Status Updated Successfully");
+    response.send({ returnResponse: "Status Updated Successfully" });
   }
 );
 
@@ -279,7 +283,7 @@ app.put(
 
     await db.run(modifyTaskDetailsQuery);
     response.status(200);
-    response.send("Task Details Updated Successfully");
+    response.send({ returnResponse: "Task Details Updated Successfully" });
   }
 );
 
@@ -294,7 +298,7 @@ app.get(
     const getUsersListQuery = `SELECT * FROM users;`;
 
     const dbResponse = await db.all(getUsersListQuery);
-    response.send(dbResponse);
+    response.send({ returnResponse: dbResponse });
   }
 );
 
@@ -312,7 +316,7 @@ app.delete(
 
     await db.run(deleteTaskQuery);
     response.status(200);
-    response.send("Task Deleted Successfully");
+    response.send({ returnResponse: "Task Deleted Successfully" });
   }
 );
 
@@ -330,7 +334,7 @@ app.delete(
 
     await db.run(deleteUserQuery);
     response.status(200);
-    response.send("User Deleted Successfully");
+    response.send({ returnResponse: "User Deleted Successfully" });
   }
 );
 
@@ -347,7 +351,7 @@ app.get(
     FROM comments JOIN users ON comments.commented_by_id = users.id WHERE comments.task_id = ${taskId};`;
 
     const dbResponse = await db.all(getCommentsQuery);
-    response.send(dbResponse);
+    response.send({ returnResponse: dbResponse });
   }
 );
 
@@ -367,7 +371,7 @@ app.post(
 
     await db.run(postCommentQuery);
     response.status(200);
-    response.send("Comment Added Successfully");
+    response.send({ returnResponse: "Comment Added Successfully" });
   }
 );
 
