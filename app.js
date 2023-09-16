@@ -106,12 +106,10 @@ app.post("/signup/", async (request, response) => {
 
       await db.run(registerUserQuery);
       response.status(200);
-      response.statusText("User created successfully");
       response.send({ returnResponse: "User created successfully" });
     }
   } else {
     response.status(400);
-    response.statusText("User already exists");
     response.send({ returnResponse: "User already exists" });
   }
 });
