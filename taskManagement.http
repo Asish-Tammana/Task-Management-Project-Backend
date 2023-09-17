@@ -131,5 +131,5 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/myTasks/emily_designer/
+GET http://localhost:3000/myTasks/sarah_dev89/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG5fYWRtaW4iLCJpYXQiOjE2OTQ4MDM3ODR9.kZLmTwOlSJJeRHuI3gqS-y_H1gkVbWLAr1WE64J-tHI

@@ -387,7 +387,17 @@ app.get(
     const getMyTasksQuery = `SELECT task_status, count(*) AS no_of_tasks FROM tasks WHERE assigned_to = '${username}' GROUP BY task_status;`;
 
     const dbResponse = await db.all(getMyTasksQuery);
-    response.send({ returnResponse: dbResponse });
+
+    const statusResponse = {
+      assigned: 5,
+      done: 10,
+      in_progress: 20,
+    };
+
+    for (let each of dbResponse) {
+      statusResponse[each.task_status] = each.no_of_tasks;
+    }
+    response.send({ returnResponse: statusResponse });
   }
 );
 
