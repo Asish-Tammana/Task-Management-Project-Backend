@@ -375,4 +375,20 @@ app.post(
   }
 );
 
+//API 13: GET tasks of a Particular username
+app.get(
+  "/myTasks/:username/",
+  authenticationToken,
+  getUserId,
+  async (request, response) => {
+    const { username } = request.params;
+    const loginUserId = request.loginUserId;
+
+    const getMyTasksQuery = `SELECT task_status, count(*) AS no_of_tasks FROM tasks WHERE assigned_to = '${username}' GROUP BY task_status;`;
+
+    const dbResponse = await db.all(getMyTasksQuery);
+    response.send({ returnResponse: dbResponse });
+  }
+);
+
 module.exports = app;
