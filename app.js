@@ -389,9 +389,9 @@ app.get(
     const dbResponse = await db.all(getMyTasksQuery);
 
     const statusResponse = {
-      assigned: 5,
-      done: 10,
-      in_progress: 20,
+      assigned: 0,
+      done: 0,
+      in_progress: 0,
     };
 
     for (let each of dbResponse) {
