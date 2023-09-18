@@ -148,13 +148,14 @@ app.post("/login/", async (request, response) => {
 //API 3: GET Tasks List
 
 app.get(
-  "/tasks/",
+  "/tasks/:username/",
   authenticationToken,
   getUserId,
   async (request, response) => {
     const loginUserId = request.loginUserId;
+    const { username } = request.params;
 
-    const getTasksList = `SELECT * FROM tasks;`;
+    const getTasksList = `SELECT * FROM tasks where assigned_to='${username}';`;
 
     const dbResponse = await db.all(getTasksList);
     response.send({ returnResponse: dbResponse });
@@ -183,7 +184,11 @@ app.post(
       task_status,
     } = request.body;
 
-    const insertTaskQuery = `INSERT INTO tasks (id, title, description, assigned_date, assigned_by, assigned_to, task_status)
+    const givenDate = new Date(assigned_date);
+    givenDate.setDate(givenDate.getDate() + 30);
+    const dead_line = givenDate.toISOString().split("T")[0];
+
+    const insertTaskQuery = `INSERT INTO tasks (id, title, description, assigned_date, assigned_by, assigned_to, task_status, deadline)
                 VALUES(
                     ${newTaskId},
                     '${title}',
@@ -191,7 +196,8 @@ app.post(
                     '${assigned_date}',
                     '${assigned_by}',
                     '${assigned_to}',
-                    '${task_status}'
+                    '${task_status}',
+                    '${dead_line}'
                 )`;
 
     await db.run(insertTaskQuery);
