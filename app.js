@@ -407,4 +407,20 @@ app.get(
   }
 );
 
+//API 14: GET all tasks
+
+app.get(
+  "/all-tasks/",
+  authenticationToken,
+  getUserId,
+  async (request, response) => {
+    const loginUserId = request.loginUserId;
+
+    const getTasksList = `SELECT * FROM tasks;`;
+
+    const dbResponse = await db.all(getTasksList);
+    response.send({ returnResponse: dbResponse });
+  }
+);
+
 module.exports = app;
