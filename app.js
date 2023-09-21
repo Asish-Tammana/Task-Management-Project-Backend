@@ -1,9 +1,9 @@
 const bcrypt = require("bcrypt");
+const path = require("path");
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
-const path = require("path");
 const app = express();
 const cors = require("cors");
 app.use(express.json());
